@@ -1,3 +1,4 @@
+//lucia fuentes
 #include "Scene.h"
 
 #include "ShaderEyelight.h"
@@ -19,7 +20,9 @@ void CScene::ParseOBJ(const std::string& fileName)
 
 		std::shared_ptr<IShader> pShader = std::make_shared<CShaderEyelight>(RGB(1, 0.5f, 0));
 		std::vector<Vec3f> vVertexes;
-		
+		std::vector<Vec2f> v_text;
+        
+        std::vector<Vec3f> v_n;
 		std::string line;
 
 		for (;;) {
@@ -32,6 +35,18 @@ void CScene::ParseOBJ(const std::string& fileName)
 				// std::cout << "Vertex: " << v << std::endl;
 				vVertexes.emplace_back(100 * v);
 			}
+            else if (line == "vt") {
+                        Vec2f tt;
+                int y = 0;
+                        for (y; y < 2; y++) ss >> tt.val[y];
+                    v_text.emplace_back(100 * tt);
+                    }
+                    else if (line == "vn") {
+                        Vec3f nn;
+                        int x = 0;
+                        for (x; x < 2; x++) ss >> nn.val[x];
+                    v_n.emplace_back(100 * nn);
+                    }
 			else if (line == "f") {
 				Vec3i f;
 				for (int i = 0; i < 3; i++) ss >> f.val[i];

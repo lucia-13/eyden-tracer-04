@@ -1,3 +1,5 @@
+//lucia fuentes's version, cg, 2019
+
 // Triangle Geaometrical Primitive class
 // Written by Sergey Kosov in 2005 for Rendering Competition
 #pragma once
@@ -52,11 +54,18 @@ public:
 		float f = edge2.dot(qvec);
 		f *= inv_det;
 		if (ray.t <= f || f <  Epsilon  ) return false;
+        
+        ray.v = mue;
+               
 		
 		// --- PUT YOUR CODE HERE ---
 		// ray.u = ...
 		// ray.v = ...
-
+        ray.u = lambda;
+        
+        
+       
+        
 		ray.t = f;
 		ray.hit = this;
 		return true;

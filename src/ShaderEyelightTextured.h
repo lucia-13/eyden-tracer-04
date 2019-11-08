@@ -1,3 +1,4 @@
+//LUCIA FUENTES
 #pragma once
 
 #include "ShaderEyelight.h"
@@ -24,7 +25,16 @@ public:
 	virtual Vec3f Shade(const Ray& ray) const override
 	{
 		// --- PUT YOUR CODE HERE ---
-		return Vec3f(0, 0, 0); 
+        Vec2f UVrays;
+        UVrays = ray.hit->getUV(ray);
+        
+        Vec3f tcel;
+        tcel = texture.GetTexel(UVrays[0], UVrays[1]);
+        Vec3f elc;
+        elc = CShaderEyelight::Shade(ray);
+        Vec3f returnvalue = tcel.mul(elc);
+        return returnvalue;
+		
 	}
 
 private:
